@@ -5,7 +5,6 @@ class Program
     public static void OnTick(Object source, TickEventArgs e)
     {
         if (source == null) return;
-		  //Console.SetCursorPosition(0, Console.CursorTop);
         Console.Write("\r{0}", e.Time);
     }
 
