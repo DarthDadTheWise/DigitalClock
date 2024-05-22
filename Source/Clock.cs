@@ -10,7 +10,12 @@ namespace DigitalClock
         {
             get
             {
-                return $"{hourTens.DecimalValue}{hourOnes.DecimalValue}:{minuteTens.DecimalValue}{minuteOnes.DecimalValue}:{secondTens.DecimalValue}{secondOnes.DecimalValue}";
+					// TODO: Change to use circuitry
+					var current = $"{hourTens.DecimalValue}{hourOnes.DecimalValue}:{minuteTens.DecimalValue}{minuteOnes.DecimalValue}:{secondTens.DecimalValue}{secondOnes.DecimalValue}";
+					if ("24:00:00" == current) {
+						Set(0,0,0);
+					}
+					return $"{hourTens.DecimalValue}{hourOnes.DecimalValue}:{minuteTens.DecimalValue}{minuteOnes.DecimalValue}:{secondTens.DecimalValue}{secondOnes.DecimalValue}";
             }
         }
         private string previousTime = string.Empty;
@@ -45,21 +50,15 @@ namespace DigitalClock
             board.Connect(minuteTens.Bit2, hourOnes.Clk);
             board.Connect(hourOnes.Bit3, hourTens.Clk);
 
-            // 
-            //board.Connect(hourTens.Bit1, );
-            // When 24:00:00 ==> 00:00:00
-            // hourTens.Bit1.State == true
-            // hourTens.Bit0.State == false
-            // hourOnes.Bit2.State == false
-            // hourOnes.Bit1.State == true
-            // hourOnes.Bit0.State == true
-
-
-
+				// TODO: Add circuitry to handle 23:59:59 maximum.
         }
 
         private void ClkStateChanged(object? sender, EventArgs e)
         {          
+			   // TODO: Change to use circuitry
+				if ("24:00:00" == Time) {
+					Set(0,0,0);
+				}
             RaiseTick();
         }
 
@@ -74,11 +73,7 @@ namespace DigitalClock
 
         internal void Start()
         {
-            // clk.Start();
-            for (int i = 0; i < 120 * 60 * 25; i++)
-            {
-                clk.Toggle();
-            }
+            clk.Start();
         }
 
         internal void Stop()

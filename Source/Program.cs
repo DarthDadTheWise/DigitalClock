@@ -5,8 +5,8 @@ class Program
     public static void OnTick(Object source, TickEventArgs e)
     {
         if (source == null) return;
-        Console.WriteLine(e.Time);
-//        Console.WriteLine(e.Time.ToLongTimeString());
+		  //Console.SetCursorPosition(0, Console.CursorTop);
+        Console.Write("\r{0}", e.Time);
     }
 
     static void Main(string[] _)

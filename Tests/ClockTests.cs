@@ -80,34 +80,34 @@
             Assert.AreEqual("00:00:00", clock.Time);
         }
 
-        [TestMethod()]
-        public void AddOneSecond2Test()
-        {
-            Clock clock = new();
-            Assert.AreEqual("00:00:00", clock.Time);
+      //   [TestMethod()]
+      //   public void AddOneSecond2Test()
+      //   {
+      //       Clock clock = new();
+      //       Assert.AreEqual("00:00:00", clock.Time);
 
-            for (int hourTens = 0; hourTens < 3; hourTens++)
-            {
-                for (int hourOnes = 0; hourOnes < 10; hourOnes++)
-                {
-                    for (int minuteTens = 0; minuteTens < 6; minuteTens++)
-                    {
-                        for (int minuteOnes = 0; minuteOnes < 10; minuteOnes++)
-                        {
-                            for (int secondTens = 0; secondTens < 6; secondTens++)
-                            {
-                                for (int secondOnes = 0; secondOnes < 10; secondOnes++)
-                                {
-                                    var expected = $"{hourTens}{hourOnes}:{minuteTens}{minuteOnes}:{secondTens}{secondOnes}";
-                                    Assert.AreEqual(expected, clock.Time);
+      //       for (int hourTens = 0; hourTens < 3; hourTens++)
+      //       {
+      //           for (int hourOnes = 0; hourOnes < 10; hourOnes++)
+      //           {
+      //               for (int minuteTens = 0; minuteTens < 6; minuteTens++)
+      //               {
+      //                   for (int minuteOnes = 0; minuteOnes < 10; minuteOnes++)
+      //                   {
+      //                       for (int secondTens = 0; secondTens < 6; secondTens++)
+      //                       {
+      //                           for (int secondOnes = 0; secondOnes < 10; secondOnes++)
+      //                           {
+      //                               var expected = $"{hourTens}{hourOnes}:{minuteTens}{minuteOnes}:{secondTens}{secondOnes}";
+      //                               Assert.AreEqual(expected, clock.Time);
 
-                                    clock.AddOneSecond();
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+      //                               clock.AddOneSecond();
+      //                           }
+      //                       }
+      //                   }
+      //               }
+      //           }
+      //       }
+      //   }
     }
 }

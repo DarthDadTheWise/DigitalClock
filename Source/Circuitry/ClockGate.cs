@@ -39,7 +39,7 @@ namespace DigitalClock.Circuitry
             if (timer != null) return;
 
             // Create a timer with a half second interval.
-            timer = new System.Timers.Timer(1000);
+            timer = new System.Timers.Timer(500);
             // Hook up the Elapsed event for the timer. 
             timer.Elapsed += TimerElapsed;
             timer.AutoReset = true;

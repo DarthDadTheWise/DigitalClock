@@ -63,6 +63,7 @@ namespace DigitalClock.Circuitry
 
         public void Set(int value)
         {
+			   // TODO: Change to use circuitry
             value %= 6;
             while (value != DecimalValue)
             {
