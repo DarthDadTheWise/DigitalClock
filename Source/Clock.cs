@@ -64,20 +64,19 @@ namespace DigitalClock
             RaiseTick();
         }
 
-        public void RaiseTick()
+        private void RaiseTick()
         {
             if (Time == previousTime) return;
-
             previousTime = Time;
             Tick?.Invoke(this, EventArgs.Empty);
         }
 
-        internal void Start()
+        public void Start()
         {
             clk.Start();
         }
 
-        internal void Stop()
+        public void Stop()
         {
             clk.Stop();
         }

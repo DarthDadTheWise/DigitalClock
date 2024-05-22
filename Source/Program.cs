@@ -11,11 +11,12 @@ class Program
     static void Main(string[] _)
     {
         Clock clock = new();
+        clock.Tick += Clock_Tick;
 
+        // The the current time, otherwise it is "00:00:00"
         var currentTime = DateTime.Now;
         clock.Set(currentTime.Hour, currentTime.Minute, currentTime.Second);
 
-        clock.Tick += Clock_Tick;
         clock.Start();
 
         Console.WriteLine("Press the Enter key to exit the program at any time... ");

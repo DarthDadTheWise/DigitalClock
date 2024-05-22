@@ -13,7 +13,7 @@ namespace DigitalClock.Circuitry
             and3Gate = new();
             notGate = new();
 
-            Board.Connect(and3Gate.Output, notGate.Input);
+            board.Connect(and3Gate.Output, notGate.Input);
         }
 
         public Input Input1 { get { return and3Gate.Input1; } }

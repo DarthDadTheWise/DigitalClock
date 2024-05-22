@@ -17,7 +17,7 @@ namespace DigitalClock.Circuitry
             input.StateChanged += OnInputStateChanged;
             output.StateChanged += OnOutputStateChanged;
 
-            // Refresh input state
+            // Refresh input state from all connections
             input.Connect(output);
             commands.Execute(new RefreshInputCommand(input));
         }

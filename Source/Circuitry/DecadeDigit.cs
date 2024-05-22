@@ -77,18 +77,6 @@ namespace DigitalClock.Circuitry
         public Output Bit1 { get { return jk2.Q; } }
         public Output Bit0 { get { return jk1.Q; } }
 
-        public string BinaryString
-        {
-            get
-            {
-                return
-                    (Bit3.State ? "1" : "0") +
-                    (Bit2.State ? "1" : "0") +
-                    (Bit1.State ? "1" : "0") +
-                    (Bit0.State ? "1" : "0");
-            }
-        }
-
         public int DecimalValue
         {
             get
@@ -117,7 +105,7 @@ namespace DigitalClock.Circuitry
 
         public void Set(int value)
         {
-				// TODO: Change to use circuitry
+            // TODO: Change to use circuitry
             value %= 10;
             while (value != DecimalValue)
             {

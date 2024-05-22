@@ -18,13 +18,13 @@ namespace DigitalClock.Circuitry
 
             // bit 0
             board.Connect(clk.Output, jk1.Clk);
-            Board.Connect(jk2.NotQ, jk1.J);
-            Board.Connect(board.Battery.Output, jk1.K);
+            board.Connect(jk2.NotQ, jk1.J);
+            board.Connect(board.Battery.Output, jk1.K);
 
             // bit 1
             board.Connect(clk.Output, jk2.Clk);
             board.Connect(jk1.Q, jk2.J);
-            Board.Connect(board.Battery.Output, jk2.K);
+            board.Connect(board.Battery.Output, jk2.K);
         }
 
         public Input Clk { get { return clk.Input; } }
@@ -40,7 +40,7 @@ namespace DigitalClock.Circuitry
 
         public void Set(int value)
         {
-			   // TODO: Change to use circuitry
+            // TODO: Change to use circuitry
             value %= 3;
             while (value != DecimalValue)
             {

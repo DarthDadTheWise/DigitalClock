@@ -32,23 +32,23 @@ namespace DigitalClock.Circuitry
             nand4 = new(board);
             notGate = new();
 
-            Board.Connect(rs2.NotQ, nand1.Input2);
-            Board.Connect(clk.Output, nand1.Input3);
-            Board.Connect(clk.Output, nand2.Input1);
-            Board.Connect(rs2.Q, nand2.Input2);
+            board.Connect(rs2.NotQ, nand1.Input2);
+            board.Connect(clk.Output, nand1.Input3);
+            board.Connect(clk.Output, nand2.Input1);
+            board.Connect(rs2.Q, nand2.Input2);
 
-            Board.Connect(nand1.Output, rs1.S);
-            Board.Connect(nand2.Output, rs1.R);
+            board.Connect(nand1.Output, rs1.S);
+            board.Connect(nand2.Output, rs1.R);
 
-            Board.Connect(rs1.Q, nand3.Input1);
-            Board.Connect(notGate.Output, nand3.Input2);
-            Board.Connect(notGate.Output, nand4.Input1);
-            Board.Connect(rs1.NotQ, nand4.Input2);
+            board.Connect(rs1.Q, nand3.Input1);
+            board.Connect(notGate.Output, nand3.Input2);
+            board.Connect(notGate.Output, nand4.Input1);
+            board.Connect(rs1.NotQ, nand4.Input2);
 
-            Board.Connect(nand3.Output, rs2.S);
-            Board.Connect(nand4.Output, rs2.R);
+            board.Connect(nand3.Output, rs2.S);
+            board.Connect(nand4.Output, rs2.R);
 
-            Board.Connect(clk.Output, notGate.Input);
+            board.Connect(clk.Output, notGate.Input);
         }
 
         public Input Clk { get { return clk.Input; } }
