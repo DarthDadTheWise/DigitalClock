@@ -10,17 +10,18 @@ namespace DigitalClock
         {
             get
             {
-					// TODO: Change to use circuitry
-					var current = $"{hourTens.DecimalValue}{hourOnes.DecimalValue}:{minuteTens.DecimalValue}{minuteOnes.DecimalValue}:{secondTens.DecimalValue}{secondOnes.DecimalValue}";
-					if ("24:00:00" == current) {
-						Set(0,0,0);
-					}
-					return $"{hourTens.DecimalValue}{hourOnes.DecimalValue}:{minuteTens.DecimalValue}{minuteOnes.DecimalValue}:{secondTens.DecimalValue}{secondOnes.DecimalValue}";
+                // TODO: Change to use circuitry
+                var current = $"{hourTens.DecimalValue}{hourOnes.DecimalValue}:{minuteTens.DecimalValue}{minuteOnes.DecimalValue}:{secondTens.DecimalValue}{secondOnes.DecimalValue}";
+                if ("24:00:00" == current)
+                {
+                    Set(0, 0, 0);
+                }
+                return $"{hourTens.DecimalValue}{hourOnes.DecimalValue}:{minuteTens.DecimalValue}{minuteOnes.DecimalValue}:{secondTens.DecimalValue}{secondOnes.DecimalValue}";
             }
         }
         private string previousTime = string.Empty;
 
-        public event TickEventHandler? Tick;
+        public event EventHandler? Tick;
 
         private readonly Board board;
         private readonly DecadeDigit secondOnes;
@@ -50,25 +51,25 @@ namespace DigitalClock
             board.Connect(minuteTens.Bit2, hourOnes.Clk);
             board.Connect(hourOnes.Bit3, hourTens.Clk);
 
-				// TODO: Add circuitry to handle 23:59:59 maximum.
+            // TODO: Add circuitry to handle 23:59:59 maximum.
         }
 
         private void ClkStateChanged(object? sender, EventArgs e)
-        {          
-			   // TODO: Change to use circuitry
-				if ("24:00:00" == Time) {
-					Set(0,0,0);
-				}
+        {
+            // TODO: Change to use circuitry
+            if ("24:00:00" == Time)
+            {
+                Set(0, 0, 0);
+            }
             RaiseTick();
         }
 
         public void RaiseTick()
         {
             if (Time == previousTime) return;
-            
+
             previousTime = Time;
-            var e = new TickEventArgs(Time);
-            Tick?.Invoke(this, e);
+            Tick?.Invoke(this, EventArgs.Empty);
         }
 
         internal void Start()

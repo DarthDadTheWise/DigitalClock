@@ -1,7 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DigitalClock.Circuitry;
-
-namespace DigitalClock.Circuitry.Tests
+﻿namespace DigitalClock.Circuitry.Tests
 {
     [TestClass()]
     public class SenaryDigitTests

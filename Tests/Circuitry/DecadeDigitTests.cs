@@ -231,7 +231,7 @@
             Assert.AreEqual(5, digit.DecimalValue);
 
 
-          
+
 
 
 

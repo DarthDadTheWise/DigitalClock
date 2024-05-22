@@ -2,10 +2,10 @@
 
 class Program
 {
-    public static void OnTick(Object source, TickEventArgs e)
+    private static void Clock_Tick(object? sender, EventArgs e)
     {
-        if (source == null) return;
-        Console.Write("\r{0}", e.Time);
+        if (sender is not Clock clock) return;
+        Console.Write("\r{0}", clock.Time);
     }
 
     static void Main(string[] _)
@@ -15,7 +15,7 @@ class Program
         var currentTime = DateTime.Now;
         clock.Set(currentTime.Hour, currentTime.Minute, currentTime.Second);
 
-        clock.Tick += OnTick;
+        clock.Tick += Clock_Tick;
         clock.Start();
 
         Console.WriteLine("Press the Enter key to exit the program at any time... ");
