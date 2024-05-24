@@ -1,4 +1,4 @@
-﻿using DigitalClock.Circuitry;
+﻿using Circuitry;
 using System.Diagnostics;
 
 namespace DigitalClock
