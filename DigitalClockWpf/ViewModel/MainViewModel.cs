@@ -27,10 +27,5 @@
         {
             clockViewModel.Stop();
         }
-
-        protected override void OnDispose()
-        {
-            //timerViewModel.Dispose();
-        }
     }
 }

@@ -11,12 +11,12 @@ namespace DigitalClock
             get
             {
                 // TODO: Change to use circuitry
-                var current = $"{hourTens.DecimalValue}{hourOnes.DecimalValue}:{minuteTens.DecimalValue}{minuteOnes.DecimalValue}:{secondTens.DecimalValue}{secondOnes.DecimalValue}";
+                var current = $"{hourTens.DisplayValue}{hourOnes.DisplayValue}:{minuteTens.DisplayValue}{minuteOnes.DisplayValue}:{secondTens.DisplayValue}{secondOnes.DisplayValue}";
                 if ("24:00:00" == current)
                 {
                     Set(0, 0, 0);
                 }
-                return $"{hourTens.DecimalValue}{hourOnes.DecimalValue}:{minuteTens.DecimalValue}{minuteOnes.DecimalValue}:{secondTens.DecimalValue}{secondOnes.DecimalValue}";
+                return $"{hourTens.DisplayValue}{hourOnes.DisplayValue}:{minuteTens.DisplayValue}{minuteOnes.DisplayValue}:{secondTens.DisplayValue}{secondOnes.DisplayValue}";
             }
         }
         private string previousTime = string.Empty;

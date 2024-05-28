@@ -52,12 +52,12 @@ namespace DigitalClockWpf.ViewModel
             get
             {
                 // TODO: Change to use circuitry
-                var current = $"{hourTensDigit.DecimalValue}{hourOnesDigit.DecimalValue}:{minuteTensDigit.DecimalValue}{minuteOnesDigit.DecimalValue}:{secondTensDigit.DecimalValue}{secondOnesDigit.DecimalValue}";
+                var current = $"{hourTensDigit.DisplayValue}{hourOnesDigit.DisplayValue}:{minuteTensDigit.DisplayValue}{minuteOnesDigit.DisplayValue}:{secondTensDigit.DisplayValue}{secondOnesDigit.DisplayValue}";
                 if ("24:00:00" == current)
                 {
                     Set(0, 0, 0);
                 }
-                return $"{hourTensDigit.DecimalValue}{hourOnesDigit.DecimalValue}:{minuteTensDigit.DecimalValue}{minuteOnesDigit.DecimalValue}:{secondTensDigit.DecimalValue}{secondOnesDigit.DecimalValue}";
+                return $"{hourTensDigit.DisplayValue}{hourOnesDigit.DisplayValue}:{minuteTensDigit.DisplayValue}{minuteOnesDigit.DisplayValue}:{secondTensDigit.DisplayValue}{secondOnesDigit.DisplayValue}";
             }
         }
 

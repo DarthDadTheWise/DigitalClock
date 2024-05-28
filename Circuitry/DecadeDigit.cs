@@ -4,7 +4,7 @@ namespace Circuitry
 {
     [DebuggerDisplay("Clk={Clk}: {Bit3.State ? 1 : 0}{Bit2.State ? 1 : 0}{Bit1.State ? 1 : 0}{Bit0.State ? 1 : 0}")]
 
-    public class DecadeDigit : FourBitDigit
+    public class DecadeDigit : CompoundGate, IHaveDigitValue
     {
         private readonly JKFlipFlop jk1;
         private readonly JKFlipFlop jk2;
@@ -75,9 +75,9 @@ namespace Circuitry
         public Output Bit3 { get { return jk4.Q; } }
         public Output Bit2 { get { return jk3.Q; } }
         public Output Bit1 { get { return jk2.Q; } }
-        public override Output Bit0 { get { return jk1.Q; } }
+        public Output Bit0 { get { return jk1.Q; } }
 
-        public override int DecimalValue
+        public int DisplayValue
         {
             get
             {
@@ -107,7 +107,7 @@ namespace Circuitry
         {
             // TODO: Change to use circuitry
             value %= 10;
-            while (value != DecimalValue)
+            while (value != DisplayValue)
             {
                 Clk.State = !Clk.State;
                 Clk.State = !Clk.State;
