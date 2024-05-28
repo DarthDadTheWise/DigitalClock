@@ -4,7 +4,7 @@ namespace Circuitry
 {
     [DebuggerDisplay("Clk={Clk}: {Bit1.State ? 1 : 0}{Bit0.State ? 1 : 0}")]
 
-    public class Mod3Digit : CompoundGate
+    public class Mod3Digit : FourBitDigit
     {
         private readonly JKFlipFlop jk1;
         private readonly JKFlipFlop jk2;
@@ -29,7 +29,7 @@ namespace Circuitry
 
         public Input Clk { get { return clk.Input; } }
         public Output Bit1 { get { return jk2.Q; } }
-        public Output Bit0 { get { return jk1.Q; } }
+        public override Output Bit0 { get { return jk1.Q; } }
 
         internal override void RefreshState()
         {
@@ -49,7 +49,7 @@ namespace Circuitry
             }
         }
 
-        public int DecimalValue
+        public override int DecimalValue
         {
             get
             {

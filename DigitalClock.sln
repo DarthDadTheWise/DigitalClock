@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalClock", "Source\DigitalClock.csproj", "{6765A966-73EB-4CDE-A18B-BF6445A928EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Circuitry", "Circuitry\Circuitry.csproj", "{BE895659-D70A-4B67-8D4B-C8F33E9C9FAA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalClockTests", "Tests\DigitalClockTests.csproj", "{89387DD7-76B5-4F1C-8E02-BBB3812A163A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CircuitryTests", "CircuitryTests\CircuitryTests.csproj", "{0E2090DD-D667-4344-BC2A-7AEBBE509DA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circuitry", "Circuitry\Circuitry.csproj", "{BE895659-D70A-4B67-8D4B-C8F33E9C9FAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalClock", "ConsoleApp\DigitalClock.csproj", "{59EF92DC-B2B3-4639-8A37-00763E8762DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircuitryTests", "CircuitryTests\CircuitryTests.csproj", "{0E2090DD-D667-4344-BC2A-7AEBBE509DA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalClockTests", "ConsoleAppTests\DigitalClockTests.csproj", "{C1B5D4F9-8C7A-484C-9C07-31F1AFE1BEAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalClockWpf", "DigitalClockWpf\DigitalClockWpf.csproj", "{B26518C4-8897-4446-9A8B-A0C478090ABD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6765A966-73EB-4CDE-A18B-BF6445A928EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6765A966-73EB-4CDE-A18B-BF6445A928EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6765A966-73EB-4CDE-A18B-BF6445A928EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6765A966-73EB-4CDE-A18B-BF6445A928EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89387DD7-76B5-4F1C-8E02-BBB3812A163A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89387DD7-76B5-4F1C-8E02-BBB3812A163A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89387DD7-76B5-4F1C-8E02-BBB3812A163A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89387DD7-76B5-4F1C-8E02-BBB3812A163A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE895659-D70A-4B67-8D4B-C8F33E9C9FAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE895659-D70A-4B67-8D4B-C8F33E9C9FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE895659-D70A-4B67-8D4B-C8F33E9C9FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +27,18 @@ Global
 		{0E2090DD-D667-4344-BC2A-7AEBBE509DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E2090DD-D667-4344-BC2A-7AEBBE509DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E2090DD-D667-4344-BC2A-7AEBBE509DA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59EF92DC-B2B3-4639-8A37-00763E8762DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59EF92DC-B2B3-4639-8A37-00763E8762DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59EF92DC-B2B3-4639-8A37-00763E8762DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59EF92DC-B2B3-4639-8A37-00763E8762DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1B5D4F9-8C7A-484C-9C07-31F1AFE1BEAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1B5D4F9-8C7A-484C-9C07-31F1AFE1BEAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1B5D4F9-8C7A-484C-9C07-31F1AFE1BEAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1B5D4F9-8C7A-484C-9C07-31F1AFE1BEAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B26518C4-8897-4446-9A8B-A0C478090ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B26518C4-8897-4446-9A8B-A0C478090ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B26518C4-8897-4446-9A8B-A0C478090ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B26518C4-8897-4446-9A8B-A0C478090ABD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
