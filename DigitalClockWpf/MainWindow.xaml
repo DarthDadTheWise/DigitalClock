@@ -8,7 +8,7 @@
         xmlns:ViewModel="clr-namespace:DigitalClockWpf.ViewModel" x:Class="DigitalClockWpf.MainWindow"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type ViewModel:MainViewModel}}"
-        Title="Digital Clock" Closed="Window_Closed" >
+        Title="Digital Clock" Closed="Window_Closed" SizeToContent="WidthAndHeight" >
     <StackPanel>
         <View:ClockControl DataContext="{Binding ClockVM, Mode=OneWay}" />
     </StackPanel>
