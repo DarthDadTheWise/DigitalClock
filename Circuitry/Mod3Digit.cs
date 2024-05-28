@@ -4,7 +4,7 @@ namespace Circuitry
 {
     [DebuggerDisplay("Clk={Clk}: {Bit1.State ? 1 : 0}{Bit0.State ? 1 : 0}")]
 
-    public class Mod3Digit : CompoundGate
+    public class Mod3Digit : CompoundGate, IHaveDigitValue
     {
         private readonly JKFlipFlop jk1;
         private readonly JKFlipFlop jk2;
@@ -42,14 +42,14 @@ namespace Circuitry
         {
             // TODO: Change to use circuitry
             value %= 3;
-            while (value != DecimalValue)
+            while (value != DisplayValue)
             {
                 Clk.State = !Clk.State;
                 Clk.State = !Clk.State;
             }
         }
 
-        public int DecimalValue
+        public int DisplayValue
         {
             get
             {

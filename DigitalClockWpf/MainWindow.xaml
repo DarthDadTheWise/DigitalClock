@@ -1,0 +1,15 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DigitalClockWpf"
+        xmlns:View="clr-namespace:DigitalClockWpf.View" 
+        xmlns:ViewModel="clr-namespace:DigitalClockWpf.ViewModel" x:Class="DigitalClockWpf.MainWindow"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type ViewModel:MainViewModel}}"
+        Title="Digital Clock" Closed="Window_Closed" >
+    <StackPanel>
+        <View:ClockControl DataContext="{Binding ClockVM, Mode=OneWay}" />
+    </StackPanel>
+</Window>

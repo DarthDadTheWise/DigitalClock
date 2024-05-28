@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="DigitalClockWpf.View.ClockControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DigitalClockWpf.View"
+             xmlns:ViewModel="clr-namespace:DigitalClockWpf.ViewModel"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type ViewModel:ClockViewModel}}" FontSize="48">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <local:DigitControl Grid.Column="0" DataContext="{Binding HourTens, Mode=OneWay}"/>
+        <local:DigitControl Grid.Column="1" DataContext="{Binding HourOnes, Mode=OneWay}"/>
+        <TextBlock Grid.Column="2" Text=":" />
+        <local:DigitControl Grid.Column="3" DataContext="{Binding MinuteTens, Mode=OneWay}"/>
+        <local:DigitControl Grid.Column="4" DataContext="{Binding MinuteOnes, Mode=OneWay}"/>
+        <TextBlock Grid.Column="5" Text=":" />
+        <local:DigitControl Grid.Column="6" DataContext="{Binding SecondTens, Mode=OneWay}"/>
+        <local:DigitControl Grid.Column="7" DataContext="{Binding SecondOnes, Mode=OneWay}"/>
+    </Grid>
+</UserControl>

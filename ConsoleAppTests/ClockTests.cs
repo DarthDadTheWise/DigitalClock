@@ -7,7 +7,6 @@
         public void SetTest()
         {
             Clock clock = new();
-
             var currentTime = DateTime.Now;
             clock.Set(currentTime.Hour, currentTime.Minute, currentTime.Second);
             string expected = currentTime.ToString("HH:mm:ss");
@@ -109,5 +108,58 @@
         //           }
         //       }
         //   }
+
+        [TestMethod()]
+        public void StartTest()
+        {
+            List<string> receivedEvents = new List<string>();
+            Clock clock = new();
+            clock.Tick += delegate (object? sender, EventArgs e)
+            {
+                Assert.IsInstanceOfType(sender, typeof(Clock));
+                var clk = sender as Clock;
+                Assert.IsNotNull(clk);
+                receivedEvents.Add(clk.Time);
+                clock.Stop();
+            };
+
+            Assert.AreEqual(0, receivedEvents.Count);
+            clock.Start();
+
+            // wait for event
+            while (0 == receivedEvents.Count) { }
+
+            Assert.AreEqual(1, receivedEvents.Count);
+            Assert.AreEqual("00:00:00", receivedEvents[0]);
+        }
+
+        [TestMethod()]
+        public void StopTest()
+        {
+            List<string> receivedEvents = new List<string>();
+            Clock clock = new();
+            clock.Tick += delegate (object? sender, EventArgs e)
+            {
+                Assert.IsInstanceOfType(sender, typeof(Clock));
+                var clk = sender as Clock;
+                Assert.IsNotNull(clk);
+                receivedEvents.Add(clk.Time);
+
+                if (receivedEvents.Count == 2)
+                {
+                    clock.Stop();
+                }
+            };
+
+            Assert.AreEqual(0, receivedEvents.Count);
+            clock.Start();
+
+            // wait for event
+            while (2 > receivedEvents.Count) { }
+
+            Assert.AreEqual(2, receivedEvents.Count);
+            Assert.AreEqual("00:00:00", receivedEvents[0]);
+            Assert.AreEqual("00:00:01", receivedEvents[1]);
+        }
     }
 }

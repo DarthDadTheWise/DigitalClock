@@ -166,7 +166,7 @@
             for (int expected = 0; expected < 6; expected++)
             {
                 digit.Set(expected);
-                Assert.AreEqual(expected, digit.DecimalValue);
+                Assert.AreEqual(expected, digit.DisplayValue);
             }
         }
     }

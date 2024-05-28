@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Source\DigitalClock.csproj" />
+    <ProjectReference Include="..\ConsoleApp\DigitalClock.csproj" />
   </ItemGroup>
 
   <ItemGroup>
