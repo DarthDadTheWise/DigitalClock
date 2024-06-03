@@ -1,8 +1,9 @@
 ﻿using Circuitry;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace DigitalClockWpf.ViewModel
 {
-    public class ClockViewModel : ViewModelBase
+    public class ClockViewModel : ObservableObject
     {
         private readonly Board board;
         private readonly DecadeDigit secondOnesDigit;

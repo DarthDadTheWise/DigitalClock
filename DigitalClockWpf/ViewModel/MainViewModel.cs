@@ -1,12 +1,13 @@
-﻿namespace DigitalClockWpf.ViewModel
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace DigitalClockWpf.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ObservableObject
     {
         private readonly ClockViewModel clockViewModel;
 
         public MainViewModel()
         {
-
             clockViewModel = new ClockViewModel();
 
             // The the current time, otherwise it is "00:00:00"

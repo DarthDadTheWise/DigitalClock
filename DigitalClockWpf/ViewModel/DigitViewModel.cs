@@ -1,8 +1,9 @@
 ﻿using Circuitry;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace DigitalClockWpf.ViewModel
 {
-    public class DigitViewModel : ViewModelBase
+    public class DigitViewModel : ObservableObject
     {
         private readonly IHaveDigitValue digit;
 
@@ -27,7 +28,7 @@ namespace DigitalClockWpf.ViewModel
 
         private void Bit_StateChanged(object? sender, EventArgs e)
         {
-            RaisePropertyChanged(() => Value);
+            OnPropertyChanged(nameof(Value));
         }
     }
 }
