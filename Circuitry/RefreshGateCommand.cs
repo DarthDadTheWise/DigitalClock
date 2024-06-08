@@ -1,16 +1,14 @@
 ﻿using System.Diagnostics;
 
-namespace Circuitry
+namespace Circuitry;
+
+[DebuggerDisplay("Refresh {gate}")]
+internal class RefreshGateCommand(IHaveState gate) : BoardCommand
 {
-    [DebuggerDisplay("Refresh {gate}")]
+    private readonly IHaveState gate = gate;
 
-    public class RefreshGateCommand(IHaveState gate) : BoardCommand
+    internal override void Execute()
     {
-        private readonly IHaveState gate = gate;
-
-        internal override void Execute()
-        {
-            gate.RefreshState();
-        }
+        gate.RefreshState();
     }
 }

@@ -1,37 +1,35 @@
 ﻿using System.Diagnostics;
 
-namespace Circuitry
+namespace Circuitry;
+
+[DebuggerDisplay("Connect {output} to {input}")]
+internal class ConnectCommand(CommandHistory commands, Output output, Input input) : BoardCommand
 {
-    [DebuggerDisplay("Connect {output} to {input}")]
+    private readonly CommandHistory commands = commands;
+    private readonly Output output = output;
+    private readonly Input input = input;
 
-    public class ConnectCommand(CommandHistory commands, Output output, Input input) : BoardCommand
+    public Input Input { get { return input; } }
+
+    internal override void Execute()
     {
-        private readonly CommandHistory commands = commands;
-        private readonly Output output = output;
-        private readonly Input input = input;
+        input.StateChanged += OnInputStateChanged;
+        output.StateChanged += OnOutputStateChanged;
 
-        public Input Input { get { return input; } }
+        // Refresh input state from all connections
+        input.Connect(output);
+        commands.Execute(new RefreshInputCommand(input));
+    }
 
-        internal override void Execute()
-        {
-            input.StateChanged += OnInputStateChanged;
-            output.StateChanged += OnOutputStateChanged;
+    private void OnInputStateChanged(object? sender, EventArgs e)
+    {
+        // Refresh the gate the owns this input
+        commands.Execute(new RefreshGateCommand(input.Gate));
+    }
 
-            // Refresh input state from all connections
-            input.Connect(output);
-            commands.Execute(new RefreshInputCommand(input));
-        }
-
-        private void OnInputStateChanged(object? sender, EventArgs e)
-        {
-            // Refresh the gate the owns this input
-            commands.Execute(new RefreshGateCommand(input.Gate));
-        }
-
-        private void OnOutputStateChanged(object? sender, EventArgs e)
-        {
-            // When the output changes, refresh this input
-            commands.Execute(new RefreshInputCommand(input));
-        }
+    private void OnOutputStateChanged(object? sender, EventArgs e)
+    {
+        // When the output changes, refresh this input
+        commands.Execute(new RefreshInputCommand(input));
     }
 }

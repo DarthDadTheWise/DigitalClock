@@ -1,25 +1,23 @@
 ﻿using System.Diagnostics;
 
-namespace Circuitry
+namespace Circuitry;
+
+[DebuggerDisplay("{Output}")]
+public class Battery : IHaveState
 {
-    [DebuggerDisplay("{Output}")]
-
-    public class Battery : IHaveState
+    public Battery()
     {
-        public Output Output;
-
-        public Battery()
+        Output = new()
         {
-            Output = new()
-            {
-                State = true
-            };
-        }
+            State = true
+        };
+    }
 
-        internal override void RefreshState()
-        {
-            // Always High
-            Output.State = true;
-        }
+    public Output Output;
+
+    void IHaveState.RefreshState()
+    {
+        // Always High
+        Output.State = true;
     }
 }

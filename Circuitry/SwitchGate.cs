@@ -1,51 +1,49 @@
 ﻿using System.Diagnostics;
 
-namespace Circuitry
+namespace Circuitry;
+
+[DebuggerDisplay("Open={IsOpen}, {Input} => {Output}")]
+public class SwitchGate : IHaveState
 {
-    [DebuggerDisplay("Open={IsOpen}, {Input} => {Output}")]
-    public class SwitchGate : IHaveState
+    private bool isOpen = true;
+
+    public SwitchGate()
     {
-        private bool isOpen = true;
+        Input = new(this);
+        Output = new();
+    }
 
-        public Input Input;
-        public Output Output;
+    public Input Input;
+    public Output Output;
 
-        public SwitchGate()
+    public void Open()
+    {
+        if (isOpen) return;
+        isOpen = true;
+        (this as IHaveState).RefreshState();
+    }
+
+    public void Close()
+    {
+        if (!isOpen) return;
+        isOpen = false;
+        (this as IHaveState).RefreshState();
+    }
+
+    void IHaveState.RefreshState()
+    {
+        if (IsOpen)
         {
-            Input = new(this);
-            Output = new();
+            Output.State = false;
         }
-
-        public void Open()
+        else
         {
-            if (isOpen) return;
-            isOpen = true;
-            RefreshState();
-        }
-
-        public void Close()
-        {
-            if (!isOpen) return;
-            isOpen = false;
-            RefreshState();
-        }
-
-        internal override void RefreshState()
-        {
-            if (IsOpen)
-            {
-                Output.State = false;
-            }
-            else
-            {
-                Output.State = Input.State;
-            }
-        }
-
-        public bool IsOpen
-        {
-            get { return isOpen; }
+            Output.State = Input.State;
         }
     }
 
+    public bool IsOpen
+    {
+        get { return isOpen; }
+    }
 }

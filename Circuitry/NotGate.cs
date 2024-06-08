@@ -1,25 +1,35 @@
 ﻿using System.Diagnostics;
 
-namespace Circuitry
+namespace Circuitry;
+
+/// <summary>
+/// The NOT gate outputs a zero when given a one, and a one when given a zero.
+/// 
+/// NOT gate truth table
+/// I Output
+/// 0   1
+/// 1 	0
+/// 
+///   Input1 ─>○─ Output
+///   
+/// </summary>
+[DebuggerDisplay("not({Input}) => {Output}")]
+public class NotGate : IHaveState
 {
-    [DebuggerDisplay("not({Input}) => {Output}")]
-    public class NotGate : IHaveState
+    public NotGate()
     {
-        public Input Input;
-        public Output Output;
-
-        public NotGate()
+        Input = new(this);
+        Output = new()
         {
-            Input = new(this);
-            Output = new()
-            {
-                State = true
-            };
-        }
+            State = true
+        };
+    }
 
-        internal override void RefreshState()
-        {
-            Output.State = !Input.State;
-        }
+    public Input Input;
+    public Output Output;
+
+    void IHaveState.RefreshState()
+    {
+        Output.State = !Input.State;
     }
 }

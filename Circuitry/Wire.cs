@@ -1,22 +1,21 @@
 ﻿using System.Diagnostics;
 
-namespace Circuitry
+namespace Circuitry;
+
+[DebuggerDisplay("{Input} => {Output}")]
+public class Wire : IHaveState
 {
-    [DebuggerDisplay("{Input} => {Output}")]
-    public class Wire : IHaveState
+    public Wire()
     {
-        public Input Input;
-        public Output Output;
+        Input = new(this);
+        Output = new();
+    }
 
-        public Wire()
-        {
-            Input = new(this);
-            Output = new();
-        }
+    public Input Input;
+    public Output Output;
 
-        internal override void RefreshState()
-        {
-            Output.State = Input.State;
-        }
+    void IHaveState.RefreshState()
+    {
+        Output.State = Input.State;
     }
 }

@@ -1,7 +1,6 @@
-﻿namespace Circuitry
+﻿namespace Circuitry;
+
+internal interface IHaveState
 {
-    public abstract class IHaveState
-    {
-        internal abstract void RefreshState();
-    }
+    void RefreshState();
 }
