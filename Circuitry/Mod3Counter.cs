@@ -2,14 +2,14 @@
 
 namespace Circuitry;
 
-[DebuggerDisplay("Clk={Clk}: {Bit1.State ? 1 : 0}{Bit0.State ? 1 : 0}")]
-public class Mod3Counter : CompoundGate, IHaveState, IHaveDigitValue
+[DebuggerDisplay("Clk={Clk}: {Bit1.State ? 1 : 0}{Bit0.State ? 1 : 0} ==> {DisplayValue}")]
+public class Mod3Counter : BaseCounter, IHaveState
 {
     private readonly JKFlipFlop jk1;
     private readonly JKFlipFlop jk2;
     private readonly Wire clk;
 
-    public Mod3Counter(Board board) : base(board)
+    public Mod3Counter(Board board)
     {
         jk1 = new(board);
         jk2 = new(board);
@@ -24,6 +24,16 @@ public class Mod3Counter : CompoundGate, IHaveState, IHaveDigitValue
         board.Connect(clk.Output, jk2.Clk);
         board.Connect(jk1.Q, jk2.J);
         board.Connect(board.Battery.Output, jk2.K);
+
+        Bit0.StateChanged += Bit_StateChanged;
+        Bit1.StateChanged += Bit_StateChanged;
+    }
+
+    private void Bit_StateChanged(object? sender, EventArgs e)
+    {
+        var newValue = Bit0.State ? 1 : 0;
+        newValue |= Bit1.State ? 2 : 0;
+        DisplayValue = newValue;
     }
 
     public Input Clk { get { return clk.Input; } }
@@ -45,16 +55,6 @@ public class Mod3Counter : CompoundGate, IHaveState, IHaveDigitValue
         {
             Clk.State = !Clk.State;
             Clk.State = !Clk.State;
-        }
-    }
-
-    public int DisplayValue
-    {
-        get
-        {
-            var newValue = Bit0.State ? 1 : 0;
-            newValue |= Bit1.State ? 2 : 0;
-            return newValue;
         }
     }
 }

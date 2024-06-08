@@ -112,7 +112,7 @@ public class ClockTests
     [TestMethod()]
     public void StartTest()
     {
-        List<string> receivedEvents = new List<string>();
+        List<string> receivedEvents = [];
         Clock clock = new();
         clock.Tick += delegate (object? sender, EventArgs e)
         {
@@ -136,7 +136,7 @@ public class ClockTests
     [TestMethod()]
     public void StopTest()
     {
-        List<string> receivedEvents = new List<string>();
+        List<string> receivedEvents = [];
         Clock clock = new();
         clock.Tick += delegate (object? sender, EventArgs e)
         {

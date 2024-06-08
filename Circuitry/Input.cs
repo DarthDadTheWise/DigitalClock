@@ -7,7 +7,7 @@ public class Input : Port
 {
     private readonly List<Output> outputs = [];
 
-    internal IHaveState Gate { get; }
+    internal IHaveState Gate { get; } 
 
     internal Input(IHaveState gate)
     {

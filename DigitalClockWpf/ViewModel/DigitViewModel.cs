@@ -5,7 +5,7 @@ namespace DigitalClockWpf.ViewModel;
 
 public class DigitViewModel : ObservableObject
 {
-    private readonly IHaveDigitValue digit;
+    private readonly IDisplayValue digit;
 
     public string Value
     {
@@ -19,14 +19,14 @@ public class DigitViewModel : ObservableObject
     {
     }
 
-    public DigitViewModel(IHaveDigitValue digit)
+    public DigitViewModel(IDisplayValue digit)
     {
         ArgumentNullException.ThrowIfNull(digit);
         this.digit = digit;
-        this.digit.Bit0.StateChanged += Bit_StateChanged;
+        this.digit.DisplayValueChanged += Digit_DisplayValueChanged;
     }
 
-    private void Bit_StateChanged(object? sender, EventArgs e)
+    private void Digit_DisplayValueChanged(object? sender, EventArgs e)
     {
         OnPropertyChanged(nameof(Value));
     }

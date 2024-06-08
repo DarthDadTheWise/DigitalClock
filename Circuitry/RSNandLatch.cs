@@ -11,28 +11,28 @@ namespace Circuitry;
 /// T T no change
 /// </summary>
 [DebuggerDisplay("R={R}  S={S} => Q={Q} !Q={NotQ}")]
-public class RSNandLatch : CompoundGate, IHaveState
+public class RSNandLatch : IHaveState
 {
-    private readonly NandGate nandGate1;
-    private readonly NandGate nandGate2;
+    private readonly NandGate nand1;
+    private readonly NandGate nand2;
 
-    public RSNandLatch(Board board) : base(board)
+    public RSNandLatch(Board board) 
     {
-        nandGate1 = new(board);
-        nandGate2 = new(board);
+        nand1 = new(board);
+        nand2 = new(board);
 
-        board.Connect(nandGate1.Output, nandGate2.Input1);
-        board.Connect(nandGate2.Output, nandGate1.Input2);
+        board.Connect(nand1.Output, nand2.Input1);
+        board.Connect(nand2.Output, nand1.Input2);
     }
 
-    public Input S { get { return nandGate1.Input1; } }
-    public Input R { get { return nandGate2.Input2; } }
-    public Output Q { get { return nandGate1.Output; } }
-    public Output NotQ { get { return nandGate2.Output; } }
+    public Input S { get { return nand1.Input1; } }
+    public Input R { get { return nand2.Input2; } }
+    public Output Q { get { return nand1.Output; } }
+    public Output NotQ { get { return nand2.Output; } }
 
     void IHaveState.RefreshState()
     {
-        (nandGate1 as IHaveState).RefreshState();
-        (nandGate2 as IHaveState).RefreshState();
+        (nand1 as IHaveState).RefreshState();
+        (nand2 as IHaveState).RefreshState();
     }
 }

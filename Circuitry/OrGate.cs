@@ -32,9 +32,9 @@ public class OrGate : IHaveState
         Output = new();
     }
 
-    public Input Input1;
-    public Input Input2;
-    public Output Output;
+    public Input Input1 { get; }
+    public Input Input2 { get; }
+    public Output Output { get; }
 
     void IHaveState.RefreshState()
     {

@@ -28,12 +28,12 @@ namespace Circuitry;
 ///
 /// </summary>
 [DebuggerDisplay("not({Input1} and {Input2} and {Input3}) => {Output}")]
-public class Nand3Gate : CompoundGate, IHaveState
+public class Nand3Gate : IHaveState
 {
     public And3Gate and3Gate;
     public NotGate notGate;
 
-    public Nand3Gate(Board board) : base(board)
+    public Nand3Gate(Board board) 
     {
         and3Gate = new(board);
         notGate = new();

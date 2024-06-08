@@ -6,46 +6,46 @@ namespace DigitalClockWpf.ViewModel;
 public class ClockViewModel : ObservableObject
 {
     private readonly Board board;
-    private readonly DecadeCounter secondOnesDigit;
-    private readonly SenaryCounter secondTensDigit;
-    private readonly DecadeCounter minuteOnesDigit;
-    private readonly SenaryCounter minuteTensDigit;
-    private readonly DecadeCounter hourOnesDigit;
-    private readonly Mod3Counter hourTensDigit;
+    private readonly DecadeCounter secondOnesCounter;
+    private readonly SenaryCounter secondTensCounter;
+    private readonly DecadeCounter minuteOnesCounter;
+    private readonly SenaryCounter minuteTensCounter;
+    private readonly DecadeCounter hourOnesCounter;
+    private readonly Mod3Counter hourTensCounter;
     private readonly ClockGate clk;
 
-    private readonly DigitViewModel hourTens;
-    private readonly DigitViewModel hourOnes;
-    private readonly DigitViewModel minuteTens;
-    private readonly DigitViewModel minuteOnes;
-    private readonly DigitViewModel secondTens;
-    private readonly DigitViewModel secondOnes;
+    private readonly DigitViewModel hourTensDigit;
+    private readonly DigitViewModel hourOnesDigit;
+    private readonly DigitViewModel minuteTensDigit;
+    private readonly DigitViewModel minuteOnesDigit;
+    private readonly DigitViewModel secondTensDigit;
+    private readonly DigitViewModel secondOnesDigit;
 
     public ClockViewModel()
     {
         board = new();
-        secondOnesDigit = new(board);
-        secondTensDigit = new(board);
-        minuteOnesDigit = new(board);
-        minuteTensDigit = new(board);
-        hourOnesDigit = new(board);
-        hourTensDigit = new(board);
+        secondOnesCounter = new(board);
+        secondTensCounter = new(board);
+        minuteOnesCounter = new(board);
+        minuteTensCounter = new(board);
+        hourOnesCounter = new(board);
+        hourTensCounter = new(board);
 
         clk = new();
-        clk.Output.StateChanged += ClkStateChanged;
-        board.Connect(clk.Output, secondOnesDigit.Clk);
-        board.Connect(secondOnesDigit.Bit3, secondTensDigit.Clk);
-        board.Connect(secondTensDigit.Bit2, minuteOnesDigit.Clk);
-        board.Connect(minuteOnesDigit.Bit3, minuteTensDigit.Clk);
-        board.Connect(minuteTensDigit.Bit2, hourOnesDigit.Clk);
-        board.Connect(hourOnesDigit.Bit3, hourTensDigit.Clk);
+        clk.Output.StateChanged += Clk_StateChanged;
+        board.Connect(clk.Output, secondOnesCounter.Clk);
+        board.Connect(secondOnesCounter.Bit3, secondTensCounter.Clk);
+        board.Connect(secondTensCounter.Bit2, minuteOnesCounter.Clk);
+        board.Connect(minuteOnesCounter.Bit3, minuteTensCounter.Clk);
+        board.Connect(minuteTensCounter.Bit2, hourOnesCounter.Clk);
+        board.Connect(hourOnesCounter.Bit3, hourTensCounter.Clk);
 
-        hourTens = new DigitViewModel(hourTensDigit);
-        hourOnes = new DigitViewModel(hourOnesDigit);
-        minuteTens = new DigitViewModel(minuteTensDigit);
-        minuteOnes = new DigitViewModel(minuteOnesDigit);
-        secondTens = new DigitViewModel(secondTensDigit);
-        secondOnes = new DigitViewModel(secondOnesDigit);
+        hourTensDigit = new(hourTensCounter);
+        hourOnesDigit = new(hourOnesCounter);
+        minuteTensDigit = new(minuteTensCounter);
+        minuteOnesDigit = new(minuteOnesCounter);
+        secondTensDigit = new(secondTensCounter);
+        secondOnesDigit = new(secondOnesCounter);
     }
 
     public string Time
@@ -53,16 +53,16 @@ public class ClockViewModel : ObservableObject
         get
         {
             // TODO: Change to use circuitry
-            var current = $"{hourTensDigit.DisplayValue}{hourOnesDigit.DisplayValue}:{minuteTensDigit.DisplayValue}{minuteOnesDigit.DisplayValue}:{secondTensDigit.DisplayValue}{secondOnesDigit.DisplayValue}";
+            var current = $"{hourTensCounter.DisplayValue}{hourOnesCounter.DisplayValue}:{minuteTensCounter.DisplayValue}{minuteOnesCounter.DisplayValue}:{secondTensCounter.DisplayValue}{secondOnesCounter.DisplayValue}";
             if ("24:00:00" == current)
             {
                 Set(0, 0, 0);
             }
-            return $"{hourTensDigit.DisplayValue}{hourOnesDigit.DisplayValue}:{minuteTensDigit.DisplayValue}{minuteOnesDigit.DisplayValue}:{secondTensDigit.DisplayValue}{secondOnesDigit.DisplayValue}";
+            return $"{hourTensCounter.DisplayValue}{hourOnesCounter.DisplayValue}:{minuteTensCounter.DisplayValue}{minuteOnesCounter.DisplayValue}:{secondTensCounter.DisplayValue}{secondOnesCounter.DisplayValue}";
         }
     }
 
-    private void ClkStateChanged(object? sender, EventArgs e)
+    private void Clk_StateChanged(object? sender, EventArgs e)
     {
         // TODO: Change to use circuitry
         if ("24:00:00" == Time)
@@ -71,12 +71,12 @@ public class ClockViewModel : ObservableObject
         }
     }
 
-    public DigitViewModel HourTens { get { return hourTens; } }
-    public DigitViewModel HourOnes { get { return hourOnes; } }
-    public DigitViewModel MinuteTens { get { return minuteTens; } }
-    public DigitViewModel MinuteOnes { get { return minuteOnes; } }
-    public DigitViewModel SecondTens { get { return secondTens; } }
-    public DigitViewModel SecondOnes { get { return secondOnes; } }
+    public DigitViewModel HourTens { get { return hourTensDigit; } }
+    public DigitViewModel HourOnes { get { return hourOnesDigit; } }
+    public DigitViewModel MinuteTens { get { return minuteTensDigit; } }
+    public DigitViewModel MinuteOnes { get { return minuteOnesDigit; } }
+    public DigitViewModel SecondTens { get { return secondTensDigit; } }
+    public DigitViewModel SecondOnes { get { return secondOnesDigit; } }
 
     public void Set(int hour, int minute, int second)
     {
@@ -87,12 +87,12 @@ public class ClockViewModel : ObservableObject
         int hourTensPlace = hour / 10;
         int hourOnesPlace = hour - hourTensPlace * 10;
 
-        secondOnesDigit.Set(secondOnesPlace);
-        secondTensDigit.Set(secondTensPlace);
-        minuteOnesDigit.Set(minuteOnesPlace);
-        minuteTensDigit.Set(minuteTensPlace);
-        hourOnesDigit.Set(hourOnesPlace);
-        hourTensDigit.Set(hourTensPlace);
+        secondOnesCounter.Set(secondOnesPlace);
+        secondTensCounter.Set(secondTensPlace);
+        minuteOnesCounter.Set(minuteOnesPlace);
+        minuteTensCounter.Set(minuteTensPlace);
+        hourOnesCounter.Set(hourOnesPlace);
+        hourTensCounter.Set(hourTensPlace);
     }
 
     internal void Start()

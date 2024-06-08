@@ -13,8 +13,8 @@ public class SwitchGate : IHaveState
         Output = new();
     }
 
-    public Input Input;
-    public Output Output;
+    public Input Input { get; }
+    public Output Output { get; }
 
     public void Open()
     {

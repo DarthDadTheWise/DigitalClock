@@ -13,21 +13,21 @@ internal class ConnectCommand(CommandHistory commands, Output output, Input inpu
 
     internal override void Execute()
     {
-        input.StateChanged += OnInputStateChanged;
-        output.StateChanged += OnOutputStateChanged;
+        input.StateChanged += Input_StateChanged;
+        output.StateChanged += Output_StateChanged;
 
         // Refresh input state from all connections
         input.Connect(output);
         commands.Execute(new RefreshInputCommand(input));
     }
 
-    private void OnInputStateChanged(object? sender, EventArgs e)
+    private void Input_StateChanged(object? sender, EventArgs e)
     {
         // Refresh the gate the owns this input
         commands.Execute(new RefreshGateCommand(input.Gate));
     }
 
-    private void OnOutputStateChanged(object? sender, EventArgs e)
+    private void Output_StateChanged(object? sender, EventArgs e)
     {
         // When the output changes, refresh this input
         commands.Execute(new RefreshInputCommand(input));
