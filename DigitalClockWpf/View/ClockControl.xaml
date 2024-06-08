@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:DigitalClockWpf.View"
              xmlns:ViewModel="clr-namespace:DigitalClockWpf.ViewModel"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type ViewModel:ClockViewModel}}" FontSize="48">
+             d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type ViewModel:ClockViewModel}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

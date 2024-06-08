@@ -229,11 +229,5 @@ public class DecadeDigitTests
 
         digit.Set(5);
         Assert.AreEqual(5, digit.DisplayValue);
-
-
-
-
-
-
     }
 }

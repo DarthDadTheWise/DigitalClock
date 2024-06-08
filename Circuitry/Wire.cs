@@ -11,8 +11,8 @@ public class Wire : IHaveState
         Output = new();
     }
 
-    public Input Input;
-    public Output Output;
+    public Input Input { get; }
+    public Output Output { get; }
 
     void IHaveState.RefreshState()
     {

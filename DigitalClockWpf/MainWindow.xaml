@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DigitalClockWpf"
         xmlns:View="clr-namespace:DigitalClockWpf.View" 
-        xmlns:ViewModel="clr-namespace:DigitalClockWpf.ViewModel" x:Class="DigitalClockWpf.MainWindow"
+        xmlns:ViewModel="clr-namespace:DigitalClockWpf.ViewModel" 
+        x:Class="DigitalClockWpf.MainWindow"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type ViewModel:MainViewModel}}"
         Title="Digital Clock" Closed="Window_Closed" SizeToContent="WidthAndHeight" >
     <StackPanel>
-        <View:ClockControl DataContext="{Binding ClockVM, Mode=OneWay}" />
+        <View:ClockControl DataContext="{Binding ClockVM, Mode=OneWay}" FontSize="72" />
     </StackPanel>
 </Window>

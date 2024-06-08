@@ -1,6 +1,6 @@
 ﻿namespace Circuitry;
 
-public class CommandHistory
+internal class CommandHistory
 {
     private readonly LinkedList<BoardCommand> commands = new();
     private LinkedListNode<BoardCommand>? current;

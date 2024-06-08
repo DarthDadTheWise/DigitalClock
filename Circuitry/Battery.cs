@@ -13,7 +13,7 @@ public class Battery : IHaveState
         };
     }
 
-    public Output Output;
+    public Output Output { get; }
 
     void IHaveState.RefreshState()
     {

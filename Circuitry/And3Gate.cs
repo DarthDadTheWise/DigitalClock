@@ -27,27 +27,27 @@ namespace Circuitry;
 ///            └───╯
 /// </summary>
 [DebuggerDisplay("{Input1} and {Input2} and {Input3} => {Output}")]
-public class And3Gate : CompoundGate, IHaveState
+public class And3Gate : IHaveState
 {
-    private readonly AndGate andGate1;
-    private readonly AndGate andGate2;
+    private readonly AndGate and1;
+    private readonly AndGate and2;
 
-    public And3Gate(Board board) : base(board)
+    public And3Gate(Board board)
     {
-        andGate1 = new();
-        andGate2 = new();
+        and1 = new();
+        and2 = new();
 
-        board.Connect(andGate1.Output, andGate2.Input1);
+        board.Connect(and1.Output, and2.Input1);
     }
 
-    public Input Input1 { get { return andGate1.Input1; } }
-    public Input Input2 { get { return andGate1.Input2; } }
-    public Input Input3 { get { return andGate2.Input2; } }
-    public Output Output { get { return andGate2.Output; } }
+    public Input Input1 { get { return and1.Input1; } }
+    public Input Input2 { get { return and1.Input2; } }
+    public Input Input3 { get { return and2.Input2; } }
+    public Output Output { get { return and2.Output; } }
 
     void IHaveState.RefreshState()
     {
-        (andGate1 as IHaveState).RefreshState();
-        (andGate2 as IHaveState).RefreshState();
+        (and1 as IHaveState).RefreshState();
+        (and2 as IHaveState).RefreshState();
     }
 }

@@ -2,23 +2,23 @@
 
 namespace Circuitry;
 
-[DebuggerDisplay("Clk={Clk}: {Bit2.State ? 1 : 0}{Bit1.State ? 1 : 0}{Bit0.State ? 1 : 0}")]
-public class SenaryCounter : CompoundGate, IHaveState, IHaveDigitValue
+[DebuggerDisplay("Clk={Clk}: {Bit2.State ? 1 : 0}{Bit1.State ? 1 : 0}{Bit0.State ? 1 : 0} ==> {DisplayValue}")]
+public class SenaryCounter : BaseCounter, IHaveState
 {
     private readonly JKFlipFlop jk1;
     private readonly JKFlipFlop jk2;
     private readonly JKFlipFlop jk3;
-    private readonly AndGate andGate1;
-    private readonly AndGate andGate2;
+    private readonly AndGate and1;
+    private readonly AndGate and2;
     private readonly Wire clk;
 
-    public SenaryCounter(Board board) : base(board)
+    public SenaryCounter(Board board)
     {
         jk3 = new(board);
         jk2 = new(board);
         jk1 = new(board);
-        andGate1 = new();
-        andGate2 = new();
+        and1 = new();
+        and2 = new();
         clk = new();
 
         // bit 0
@@ -27,22 +27,34 @@ public class SenaryCounter : CompoundGate, IHaveState, IHaveDigitValue
         board.Connect(board.Battery.Output, jk1.K);
 
         // and 1
-        board.Connect(jk1.Q, andGate1.Input1);
-        board.Connect(jk3.NotQ, andGate1.Input2);
+        board.Connect(jk1.Q, and1.Input1);
+        board.Connect(jk3.NotQ, and1.Input2);
 
         // bit 1
-        board.Connect(andGate1.Output, jk2.J);
+        board.Connect(and1.Output, jk2.J);
         board.Connect(jk1.Q, jk2.K);
         board.Connect(clk.Output, jk2.Clk);
 
         // and 2
-        board.Connect(jk1.Q, andGate2.Input1);
-        board.Connect(jk2.Q, andGate2.Input2);
+        board.Connect(jk1.Q, and2.Input1);
+        board.Connect(jk2.Q, and2.Input2);
 
         // bit 2
-        board.Connect(andGate2.Output, jk3.J);
+        board.Connect(and2.Output, jk3.J);
         board.Connect(jk1.Q, jk3.K);
         board.Connect(clk.Output, jk3.Clk);
+
+        Bit0.StateChanged += Bit_StateChanged;
+        Bit1.StateChanged += Bit_StateChanged;
+        Bit2.StateChanged += Bit_StateChanged;
+    }
+
+    private void Bit_StateChanged(object? sender, EventArgs e)
+    {
+        var newValue = Bit0.State ? 1 : 0;
+        newValue |= Bit1.State ? 2 : 0;
+        newValue |= Bit2.State ? 4 : 0;
+        DisplayValue = newValue;
     }
 
     public Input Clk { get { return clk.Input; } }
@@ -55,14 +67,14 @@ public class SenaryCounter : CompoundGate, IHaveState, IHaveDigitValue
         (jk1 as IHaveState).RefreshState();
         (jk2 as IHaveState).RefreshState();
         (jk3 as IHaveState).RefreshState();
-        (andGate1 as IHaveState).RefreshState();
-        (andGate2 as IHaveState).RefreshState();
+        (and1 as IHaveState).RefreshState();
+        (and2 as IHaveState).RefreshState();
         (clk as IHaveState).RefreshState();
     }
 
     public void Set(int value)
     {
-			   // TODO: Change to use circuitry
+        // TODO: Change to use circuitry
         value %= 6;
         while (value != DisplayValue)
         {
@@ -70,16 +82,4 @@ public class SenaryCounter : CompoundGate, IHaveState, IHaveDigitValue
             Clk.State = !Clk.State;
         }
     }
-
-    public int DisplayValue
-    {
-        get
-        {
-            var newValue = Bit0.State ? 1 : 0;
-            newValue |= Bit1.State ? 2 : 0;
-            newValue |= Bit2.State ? 4 : 0;
-            return newValue;
-        }
-    }
-
 }

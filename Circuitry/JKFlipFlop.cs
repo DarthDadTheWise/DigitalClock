@@ -10,7 +10,7 @@ namespace Circuitry;
 /// x   1 1 x x    Toggle
 /// </summary>
 [DebuggerDisplay("Clk={Clk} J={J} K={K} => Q={Q} !Q={NotQ}")]
-public class JKFlipFlop : CompoundGate, IHaveState
+public class JKFlipFlop : IHaveState
 {
     private readonly Wire clk;
     private readonly RSNandLatch rs1;
@@ -21,7 +21,7 @@ public class JKFlipFlop : CompoundGate, IHaveState
     private readonly NandGate nand4;
     private readonly NotGate notGate;
 
-    public JKFlipFlop(Board board) : base(board)
+    public JKFlipFlop(Board board) 
     {
         clk = new();
         rs1 = new(board);

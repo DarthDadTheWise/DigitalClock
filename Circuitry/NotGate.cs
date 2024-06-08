@@ -25,8 +25,8 @@ public class NotGate : IHaveState
         };
     }
 
-    public Input Input;
-    public Output Output;
+    public Input Input { get; }
+    public Output Output { get; }
 
     void IHaveState.RefreshState()
     {

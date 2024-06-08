@@ -6,7 +6,7 @@ public abstract class Port
 
     public event EventHandler? StateChanged;
 
-    public void RaiseStateChanged()
+    public void OnStateChanged()
     {
         StateChanged?.Invoke(this, EventArgs.Empty);
     }
@@ -18,7 +18,7 @@ public abstract class Port
         {
             if (state == value) return;
             state = value;
-            RaiseStateChanged();
+            OnStateChanged();
         }
     }
 }
