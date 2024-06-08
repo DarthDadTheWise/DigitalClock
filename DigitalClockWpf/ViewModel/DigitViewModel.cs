@@ -1,5 +1,6 @@
 ﻿using Circuitry;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel;
 
 namespace DigitalClockWpf.ViewModel;
 
@@ -15,6 +16,7 @@ public class DigitViewModel : ObservableObject
         }
     }
 
+    [DesignOnly(true)]
     public DigitViewModel() : this(new DecadeCounter(new Board()))
     {
     }
