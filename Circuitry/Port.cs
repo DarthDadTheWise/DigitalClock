@@ -1,25 +1,24 @@
-﻿namespace Circuitry
+﻿namespace Circuitry;
+
+public abstract class Port
 {
-    public class Port
+    private bool state;
+
+    public event EventHandler? StateChanged;
+
+    public void RaiseStateChanged()
     {
-        private bool state;
+        StateChanged?.Invoke(this, EventArgs.Empty);
+    }
 
-        public event EventHandler? StateChanged;
-
-        public void RaiseStateChanged()
+    public bool State
+    {
+        get { return state; }
+        internal set
         {
-            StateChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-        public bool State
-        {
-            get { return state; }
-            internal set
-            {
-                if (state == value) return;
-                state = value;
-                RaiseStateChanged();
-            }
+            if (state == value) return;
+            state = value;
+            RaiseStateChanged();
         }
     }
 }

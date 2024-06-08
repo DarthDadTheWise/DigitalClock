@@ -1,9 +1,8 @@
 ﻿using System.Diagnostics;
 
-namespace Circuitry
+namespace Circuitry;
+
+[DebuggerDisplay("{State}")]
+public class Output : Port
 {
-    [DebuggerDisplay("{State}")]
-    public class Output : Port
-    {
-    }
 }

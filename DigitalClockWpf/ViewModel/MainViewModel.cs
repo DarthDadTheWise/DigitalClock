@@ -1,32 +1,31 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace DigitalClockWpf.ViewModel
+namespace DigitalClockWpf.ViewModel;
+
+public class MainViewModel : ObservableObject
 {
-    public class MainViewModel : ObservableObject
+    private readonly ClockViewModel clockViewModel;
+
+    public MainViewModel()
     {
-        private readonly ClockViewModel clockViewModel;
+        clockViewModel = new ClockViewModel();
 
-        public MainViewModel()
-        {
-            clockViewModel = new ClockViewModel();
+        // The the current time, otherwise it is "00:00:00"
+        var currentTime = DateTime.Now;
+        clockViewModel.Set(currentTime.Hour, currentTime.Minute, currentTime.Second);
 
-            // The the current time, otherwise it is "00:00:00"
-            var currentTime = DateTime.Now;
-            clockViewModel.Set(currentTime.Hour, currentTime.Minute, currentTime.Second);
+        clockViewModel.Start();
+    }
 
-            clockViewModel.Start();
-        }
+    public ClockViewModel ClockVM { get { return clockViewModel; } }
 
-        public ClockViewModel ClockVM { get { return clockViewModel; } }
+    public void Start()
+    {
+        clockViewModel.Start();
+    }
 
-        public void Start()
-        {
-            clockViewModel.Start();
-        }
-
-        public void Stop()
-        {
-            clockViewModel.Stop();
-        }
+    public void Stop()
+    {
+        clockViewModel.Stop();
     }
 }

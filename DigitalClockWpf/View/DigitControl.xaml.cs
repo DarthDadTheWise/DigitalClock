@@ -13,16 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DigitalClockWpf.View
+namespace DigitalClockWpf.View;
+
+/// <summary>
+/// Interaction logic for DigitControl.xaml
+/// </summary>
+public partial class DigitControl : UserControl
 {
-    /// <summary>
-    /// Interaction logic for DigitControl.xaml
-    /// </summary>
-    public partial class DigitControl : UserControl
+    public DigitControl()
     {
-        public DigitControl()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

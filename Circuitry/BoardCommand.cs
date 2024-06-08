@@ -1,7 +1,6 @@
-﻿namespace Circuitry
+﻿namespace Circuitry;
+
+internal abstract class BoardCommand
 {
-    public abstract class BoardCommand
-    {
-        internal abstract void Execute();
-    }
+    internal abstract void Execute();
 }

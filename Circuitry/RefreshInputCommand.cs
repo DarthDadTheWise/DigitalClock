@@ -1,16 +1,14 @@
 ﻿using System.Diagnostics;
 
-namespace Circuitry
+namespace Circuitry;
+
+[DebuggerDisplay("Refresh {input}")]
+internal class RefreshInputCommand(Input input) : BoardCommand
 {
-    [DebuggerDisplay("Refresh {input}")]
+    private readonly Input input = input;
 
-    internal class RefreshInputCommand(Input input) : BoardCommand
+    internal override void Execute()
     {
-        private readonly Input input = input;
-
-        internal override void Execute()
-        {
-            input.RefreshState();
-        }
+        input.RefreshState();
     }
 }

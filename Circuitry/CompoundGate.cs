@@ -1,7 +1,6 @@
-﻿namespace Circuitry
+﻿namespace Circuitry;
+
+public abstract class CompoundGate(Board board) 
 {
-    public abstract class CompoundGate(Board board) : IHaveState
-    {
-        public Board Board { get; } = board;
-    }
+    protected Board Board { get; } = board;
 }
